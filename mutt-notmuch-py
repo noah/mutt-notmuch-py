@@ -24,6 +24,7 @@ Licensed under BSD
 
 import os
 import hashlib
+import readline
 
 from commands import getoutput
 from mailbox import Maildir
@@ -105,4 +106,7 @@ if __name__ == '__main__':
         dest = '~/.cache/mutt_results'
 
     # Use expanduser() so that os.symlink() won't get weirded out by tildes.
-    main(os.path.expanduser(dest).rstrip('/'), options.gmail)
+    try:
+        main(os.path.expanduser(dest).rstrip('/'), options.gmail)
+    except KeyboardInterrupt:
+        pass
